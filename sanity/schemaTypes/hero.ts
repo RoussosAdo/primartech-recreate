@@ -4,12 +4,20 @@ export const hero = defineType({
   name: "hero",
   title: "Hero",
   type: "object",
+
+  preview: {
+  select: { title: "headline" },
+  prepare({ title }) {
+    return { title: `Hero — ${title || "Untitled"}` };
+  },
+},
   fields: [
     defineField({
       name: "eyebrow",
       title: "Eyebrow",
       type: "string",
     }),
+    
     defineField({
       name: "headline",
       title: "Headline",
@@ -42,5 +50,6 @@ export const hero = defineType({
       title: "Secondary CTA Href",
       type: "string",
     }),
+    
   ],
 });

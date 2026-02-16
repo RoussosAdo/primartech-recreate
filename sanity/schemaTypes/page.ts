@@ -4,6 +4,14 @@ export const page = defineType({
   name: "page",
   title: "Page",
   type: "document",
+
+  preview: {
+    select: { title: "title", slug: "slug.current" },
+    prepare({ title, slug }) {
+      return { title: title || "Page", subtitle: slug ? `/${slug}` : "" };
+    },
+  },
+
   fields: [
     defineField({
       name: "title",
@@ -33,7 +41,7 @@ export const page = defineType({
       name: "sections",
       title: "Sections",
       type: "array",
-      of: [{ type: "hero" }],
+      of: [{ type: "hero" }, { type: "logoMarquee" }, { type: "cardsGrid" }],
       validation: (Rule) => Rule.min(1),
     }),
   ],
