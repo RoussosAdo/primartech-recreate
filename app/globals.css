@@ -57,10 +57,17 @@ html { scroll-behavior: smooth; }
   animation: marquee 40s linear infinite;
 }
 
-
-
-
 /* respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .marquee { animation: none }
+}
+
+@keyframes floaty {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-floaty { animation: none !important; }
 }
