@@ -4,20 +4,12 @@ export const hero = defineType({
   name: "hero",
   title: "Hero",
   type: "object",
-
-  preview: {
-  select: { title: "headline" },
-  prepare({ title }) {
-    return { title: `Hero — ${title || "Untitled"}` };
-  },
-},
   fields: [
     defineField({
       name: "eyebrow",
       title: "Eyebrow",
       type: "string",
     }),
-    
     defineField({
       name: "headline",
       title: "Headline",
@@ -30,6 +22,7 @@ export const hero = defineType({
       type: "text",
       rows: 3,
     }),
+
     defineField({
       name: "primaryCtaLabel",
       title: "Primary CTA Label",
@@ -50,6 +43,27 @@ export const hero = defineType({
       title: "Secondary CTA Href",
       type: "string",
     }),
-    
+
+    //  NEW: Hero image from Sanity
+    defineField({
+      name: "image",
+      title: "Hero Image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Alt text",
+          type: "string",
+          validation: (Rule) => Rule.required().warning("Alt text is required for accessibility/SEO."),
+        }),
+      ],
+    }),
   ],
+  preview: {
+    select: { title: "headline", media: "image" },
+    prepare({ title, media }) {
+      return { title: title || "Hero", media };
+    },
+  },
 });

@@ -41,7 +41,7 @@ export const page = defineType({
       name: "sections",
       title: "Sections",
       type: "array",
-      of: [{ type: "hero" }, { type: "logoMarquee" }, { type: "cardsGrid" }],
+      of: [{ type: "hero" }, { type: "logoMarquee" }, { type: "heroImage" }, { type: "cardsGrid" }],
       validation: (Rule) => Rule.min(1),
     }),
   ],
